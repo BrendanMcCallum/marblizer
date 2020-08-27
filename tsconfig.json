@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "module": "es6",
     "moduleResolution": "classic",
     "target": "es2016",

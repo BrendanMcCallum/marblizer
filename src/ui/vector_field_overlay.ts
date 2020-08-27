@@ -231,6 +231,7 @@ class VectorFieldRenderer {
         const width = this.arrowWidth;
         const height = this.arrowHeight;
         ctx.clearRect(0, 0, this.overlayCanvas.width, this.overlayCanvas.height);
+        console.log("ctx.clearRect(0, 0, " + this.overlayCanvas.width + ", " + this.overlayCanvas.height + ");");
         if (this._vectorField == null) {
             requestAnimationFrame(this.drawOverlay.bind(this));
             return;
@@ -241,7 +242,9 @@ class VectorFieldRenderer {
         const halfHeight = height / 2;
 
         ctx.fillStyle = "rgba(0,0,0, 0.8)";
+        console.log('ctx.fillStyle = "rgba(0,0,0, 0.8)";');
         ctx.strokeStyle = "rgba(255,255,255,0.6)";
+        console.log('ctx.strokeStyle = "rgba(255,255,255,0.6)";');
         for (let x = 0; x < this.overlayCanvas.width; x += this._spacing) {
             for (let y = 0; y < this.overlayCanvas.height; y += this._spacing) {
                 const dir = this._vectorField.atPoint(new Vec2(x, y));
@@ -249,11 +252,16 @@ class VectorFieldRenderer {
                 const size = dir.length() / this.arrowHeight;
                 if (size > 0.1) {
                     ctx.translate(x - halfWidth, y - halfHeight);
+                    console.log("ctx.translate(" + x + " - " + halfWidth + ", " + y + " - " + halfHeight + ");");
                     ctx.scale(size, size);
+                    console.log("ctx.scale(" + size + ", " + size + ");");
                     ctx.rotate(angle);
+                    console.log("ctx.rotate(" + angle + ");");
 
                     ctx.stroke(this.arrow);
+                    console.log("ctx.stroke(" + this.arrow + ");");
                     ctx.fill(this.arrow);
+                    console.log("ctx.fill(" + this.arrow + ");");
 
                     ctx.scale(1 / size, 1 / size);
                     ctx.rotate(-angle);

@@ -31,12 +31,16 @@ export class Drop {
         }
         let newPath = new Path2D();
         const firstPoint = this.points[0];
+        console.log("ctx.beginPath();");
+        console.log("ctx.moveTo(" + firstPoint + ");");
         newPath.moveTo(firstPoint.x, firstPoint.y);
         for (let i = 1; i < this.points.length; i++) {
             const nextPoint = this.points[i];
             newPath.lineTo(nextPoint.x, nextPoint.y);
+            console.log("ctx.lineTo(" + nextPoint.x + ", " + nextPoint.y + ");");
         }
         newPath.closePath();
+        console.log("ctx.closePath();");
         this._cached_path = newPath;
         this.dirty = false;
     }
@@ -80,10 +84,14 @@ export class InteractiveCurveRenderer implements MarblingRenderer {
 
     render() {
         const ctx = this.renderCanvas.getContext("2d");
+        console.log("ctx.fillStyle = " + this.baseColor.toRGBString() + ";");
         ctx.fillStyle = this.baseColor.toRGBString();
+        console.log("ctx.fillRect(0, 0, " + this.renderCanvas.width + ", " + this.renderCanvas.height + ");");
         ctx.fillRect(0, 0, this.renderCanvas.width, this.renderCanvas.height);
         for (let i = 0; i < this.drops.length; i++) {
             const drop = this.drops[i];
+            console.log("ctx.fillStyle = " + drop.color.toRGBString() + ";");
+            console.log("ctx.fill(" + drop.getPath() + ");");
             ctx.fillStyle = drop.color.toRGBString();
             ctx.fill(drop.getPath());
         }

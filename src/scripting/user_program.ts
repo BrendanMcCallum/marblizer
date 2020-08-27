@@ -1,4 +1,5 @@
 import Vec2 from "../models/vector.js";
+import {default as Color, colorSets} from "../models/color.js";
 
 export default class UserProgram {
     private executable: Function;

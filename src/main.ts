@@ -2,6 +2,7 @@
 import Vec2 from "./models/vector.js";
 import {getParameterByName} from "./parse_query_string.js";
 import UserProgram from "./scripting/user_program.js";
+import Color from "./models/color.js";
 import {colorSets} from "./models/color.js";
 import {InteractiveCurveRenderer} from "./renderer/curve_renderer.js";
 import MarblingUI from "./ui/ui.js";
